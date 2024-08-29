@@ -1,8 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Main menu";
+    ViewData["Title"] = "メインメニュー";
 }
 
 <div class="text-center">
-    <h1 class="display-4">＊＊メインメニュー＊＊</h1>
-    
+    <h1 class="display-4 m-5">＊＊メインメニュー＊＊</h1>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a class="btn btn-primary" asp-controller="Devices" asp-action="Index"> 機器一覧 </a>
+        <a class="btn btn-primary" asp-controller="Users" asp-action="Index"> ユーザ一覧 </a>
+        <a class="btn btn-primary"asp-controller="Rentals" asp-action="Index"> 貸出情報 </a>
+    </div>
 </div>

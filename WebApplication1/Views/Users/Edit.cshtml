@@ -1,0 +1,79 @@
+﻿@model TeamD_Database.Entity.User
+
+@{
+    ViewData["Title"] = "ユーザ詳細編集";
+}
+
+<h1 class="m-5">ユーザ詳細編集</h1>
+
+<hr />
+<div class="row">
+    <form asp-action="Edit">
+        <div class="block">
+            <div class="form-group">
+                <label asp-for="EmployeeNo" class="control-label">社員番号</label>
+                <input asp-for="EmployeeNo" class="form-control" readonly />
+                <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">氏名</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Namekana" class="control-label">氏名（カタカナ）</label>
+                <input asp-for="Namekana" class="form-control" />
+                <span asp-validation-for="Namekana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label">年齢</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label">性別</label>
+                <select asp-for="Gender" class="form-control">
+                    <option selected="">性別</option>
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="department" class="control-label">所属部署</label>
+                <input asp-for="department" class="form-control" />
+                <span asp-validation-for="department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Position" class="control-label">役職</label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="block">
+            <div class="form-group">
+                <label asp-for="TelNo" class="control-label">電話番号</label>
+                <input asp-for="TelNo" class="form-control" />
+                <span asp-validation-for="TelNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailAdress" class="control-label">メールアドレス</label>
+                <input asp-for="MailAdress" class="form-control" />
+                <span asp-validation-for="MailAdress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountLevel" class="control-label">PCアカウント権限</label>
+                <input asp-for="AccountLevel" class="form-control" />
+                <span asp-validation-for="AccountLevel" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group d-grid gap-2 d-md-flex justify-content-md-center">
+            <a button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</a>
+            <input type="submit" value="更新" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

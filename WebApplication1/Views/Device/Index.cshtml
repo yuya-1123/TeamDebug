@@ -1,0 +1,49 @@
+﻿@using WebApplication1.Models.Data;
+@model DeviceViewModel
+@{
+    ViewData["Title"] = "機器一覧";
+}
+<h2> 機器一覧</h2>
+<a class="btn btn-primary" asp-controller="Device" asp-action="Create">機器追加</a>
+<hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>資産番号</th>
+            <th>メーカー</th>
+            <th>OS</th>
+            <th>メモリ</th>
+            <th>容量</th>
+            <th>グラボ</th>
+            <th>故障</th>
+            <th>備考欄</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* テーブルのデータ行を情報の個数分繰り返し出力 *@
+        @foreach (var device in Model.DeviceList)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="Detail" asp-route-id="@device.AssetsNo">詳細</a>
+                </td>
+                <td>@device.AssetsNo</td>
+                <td>@device.Maker</td>
+                <td>@device.Os</td>
+                <td>@device.Memory</td>
+                <td>@device.Capacity</td>
+                <td>@device.Graphics</td>
+                <td>@device.Break</td>
+                <td>@device.Remarks</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
+    <a class="btn btn-primary" type="button" asp-controller="Device" asp-action="Add">新規</a>
+</div>
+

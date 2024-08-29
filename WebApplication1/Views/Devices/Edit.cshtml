@@ -1,0 +1,98 @@
+﻿@model TeamD_Database.Entity.Device
+
+@{
+    ViewData["Title"] = "機器詳細編集";
+}
+
+<h1 class="m-5">機器詳細編集</h1>
+
+<hr />
+<div class="row">
+    <form asp-action="Edit">
+        <div class="block">
+            <div class="form-group">
+                <label asp-for="AssetsNo" class="control-label">資産番号</label>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="AssetsNo" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Maker" class="control-label">メーカー</label>
+                <input asp-for="Maker" class="form-control" />
+                <span asp-validation-for="Maker" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Os" class="control-label">OS</label>
+                <input asp-for="Os" class="form-control" />
+                <span asp-validation-for="Os" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Memory" class="control-label">メモリ</label>
+                <input asp-for="Memory" class="form-control" />
+                <span asp-validation-for="Memory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label">容量</label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    グラフィックボード
+                    <input class="form-check-input" asp-for="Graphics" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label">保管場所</label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    故障
+                    <input class="form-check-input" asp-for="Break" />
+                </label>
+            </div>
+        </div>
+        <div class="block">
+            <div class="form-group">
+                <label asp-for="StartleaseDate" class="control-label">リース開始日</label>
+                <input asp-for="StartleaseDate" class="form-control" />
+                <span asp-validation-for="StartleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LimitleaseDate" class="control-label">リース期限日</label>
+                <input asp-for="LimitleaseDate" class="form-control" />
+                <span asp-validation-for="LimitleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remarks" class="control-label">備考</label>
+                <input asp-for="Remarks" class="form-control" />
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterDate" class="control-label">登録日</label>
+                <input asp-for="RegisterDate" class="form-control" readonly />
+                <span asp-validation-for="RegisterDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateDate" class="control-label">更新日</label>
+                <input asp-for="UpdateDate" class="form-control" readonly />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InventoryDate" class="control-label">棚卸日</label>
+                <input asp-for="InventoryDate" class="form-control" />
+                <span asp-validation-for="InventoryDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group d-grid gap-2 d-md-flex justify-content-md-center">
+            <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
+            <input type="submit" value="更新" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

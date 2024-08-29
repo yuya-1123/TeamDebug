@@ -1,0 +1,104 @@
+﻿@*@model WebApplication1.Models.RentalViewModel*@
+@model IEnumerable<WebApplication1.Models.RentalViewModel>
+
+@{
+    ViewData["Title"] = "貸出状況";
+}
+
+<h1 class ="m-5">貸出状況</h1>
+
+<div class="d-flex flex-row-reverse">
+    <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        🔍
+    </button>
+</div>
+<div id="collapseOne" class="collapse" aria-expanded="true">
+    <form asp-controller="Rentals" asp-action="Index" method="get">
+        <div class="container text-center pt-2">
+            <div class="row gx-2 justify-content-end">
+                <div class="col-1 m-1">
+                    <input type="submit" value="検索" class="btn btn-primary" />
+                </div>
+                <div class="col-1 m-1">
+                    <input type="submit" value="リセット" class="btn btn-danger" id="reset" @ViewBag.reset />
+                </div>
+                <div class="col-4 m-1">
+                    <input type="text" name="SearchString" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <h4 style="color:red">貸出期限切れ件数：@ViewBag.Limit　件</h4>
+</div>
+
+<div class="table_set mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="sticky"></th>
+                <th class="sticky">
+                    資産番号
+                </th>
+                <th class="sticky">
+                    社員氏名
+                </th>
+                <th class="sticky">
+                    貸出日
+                </th>
+                <th class="sticky">
+                    貸出期限日
+                </th>
+                <th class="sticky">
+                    空き
+                </th>
+                <th class="sticky">
+                    備考
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.AssetsNo">詳細</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => item.AssetsNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => item.LoanDate)
+                    </td>
+                    @if (item.ReturnDate > DateTime.Now)
+                    {
+                        <td>
+                            <a style="color:red">@Html.DisplayFor(Model => item.ReturnDate)</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(Model => item.ReturnDate)
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(Model => item.Vacant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => item.Remarks)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2">
+    <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
+</div>

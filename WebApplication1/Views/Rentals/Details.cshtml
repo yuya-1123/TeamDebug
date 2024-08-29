@@ -1,0 +1,103 @@
+﻿@model TeamD_Database.Entity.Rental
+@*model WebApplication1.Models.RentalViewModel*@
+
+@{
+    ViewData["Title"] = "貸出情報詳細";
+}
+
+<h1 class="m-5">貸出情報詳細</h1>
+
+<div class="content-height">
+    <hr />
+    <dl class="row">
+        <div class="col">
+            <div class="list">
+                <dt class="col-sm-4">
+                    資産番号
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.AssetsNo)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    メーカー
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Maker)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    OS
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.OS)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    空き
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Vacant)
+                </dd>
+            </div>
+        </div>
+        <div class="col">
+            <div class="list">
+                <dt class="col-sm-4">
+                    社員番号
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.EmployeeNo)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    社員氏名
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    貸出日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.LoanDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    返却日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.ReturnDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    備考
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Remarks)
+                </dd>
+            </div>
+        </div>
+    </dl>
+</div>
+<hr />
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <a class="btn btn-primary me-md-2" onclick="history.back()">戻る</a>
+    @if (!Model.Vacant)
+    {
+        <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model?.AssetsNo">貸出</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model?.AssetsNo">返却</a>
+    }
+
+</div>

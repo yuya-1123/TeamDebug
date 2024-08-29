@@ -1,0 +1,166 @@
+﻿@model TeamD_Database.Entity.Device
+
+@{
+    ViewData["Title"] = "機器詳細";
+}
+
+<h1 class="m-5">機器詳細</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <div class="col">
+            <div class="list">
+                <dt class="col-sm-4">
+                    資産番号
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.AssetsNo)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    メーカー
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Maker)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    OS
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Os)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    メモリ
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Memory)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    容量
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Capacity)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    グラフィックボード
+                </dt>
+                <dd class="col-sm-8">
+                    @if (!Model.Graphics)
+                    {
+                        <label>無</label>
+                    }
+                    else
+                    {
+                        <label>有</label>
+                    }
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    保管場所
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    故障
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Break)
+                </dd>
+            </div>
+        </div>
+        <div class="col">
+            <div class="list">
+                <dt class="col-sm-4">
+                    リース開始日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.StartleaseDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    リース期限日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.LimitleaseDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    備考欄
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Remarks)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    登録日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.RegisterDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    更新日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.UpdateDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    棚卸日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.InventoryDate)
+                </dd>
+            </div>
+        </div>
+    </dl>
+    <hr />
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <a button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</a>
+    <a class="btn btn-primary me-md-2" type="button" asp-action="Edit" asp-route-id="@Model?.AssetsNo">編集</a>
+    <!--ポップアップ表示-->
+    <button type="button" class="btn btn-danger me-md-2" data-bs-toggle="modal" data-bs-target="#deleteModal" asp-route-id="@Model?.AssetsNo">削除</button>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">削除確認</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    本当に削除しますか？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> いいえ </button>
+                    <form method="post" asp-action="Delete" asp-route-id="@Model.AssetsNo">
+                        <input type="submit" value="はい" class="btn btn-danger" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

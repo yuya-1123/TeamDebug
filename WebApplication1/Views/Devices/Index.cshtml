@@ -1,0 +1,103 @@
+﻿@*@model IEnumerable<TeamD_Database.Entity.Device>*@
+@model WebApplication1.Models.DeviceViewModel
+@{
+    ViewData["Title"] = "機器一覧";
+}
+
+<h1 class="m-5">機器一覧</h1>
+<div class="d-flex flex-row-reverse">
+    <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+     🔍
+    </button>
+</div>
+<div id="collapseOne" class="collapse" aria-expanded="true">
+    <form asp-controller="Devices" asp-action="Index" method="get">
+        <div class="container-fluid text-center pt-2">
+            <div class="row gx-2 justify-content-end">
+                <div class="col-1 m-1">
+                    <input type="submit" value="検索" class=" btn btn-primary" />
+                </div>
+                <div class="col-4 m-1">
+                    <input type="text" name="SearchString" class=" form-control" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="table_set mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="sticky"></th>
+                <th class="sticky">
+                    <a asp-controller="Devices" action="Index"
+                       asp-route-SearchString="@Model.SearchString"
+                       asp-route-SortField="@Model.GetSortFieldParamValue(Html.DisplayNameFor(model => model.DeviceList[0].AssetsNo))">資産番号</a>
+                </th>
+                <th class="sticky">
+                    <a asp-controller="Devices" action="Index"
+                       asp-route-SearchString="@Model.SearchString"
+                       asp-route-SortField="@Model.GetSortFieldParamValue(Html.DisplayNameFor(model => model.DeviceList[0].Maker))">メーカー</a>
+                </th>
+                <th class="sticky">
+                    <a asp-controller="Devices" action="Index"
+                       asp-route-SearchString="@Model.SearchString"
+                       asp-route-SortField="@Model.GetSortFieldParamValue(Html.DisplayNameFor(model => model.DeviceList[0].Os))">OS</a>
+                </th>
+                <th class="sticky">メモリ</th>
+                <th class="sticky">
+                    <a asp-controller="Devices" action="Index"
+                       asp-route-SearchString="@Model.SearchString"
+                       asp-route-SortField="@Model.GetSortFieldParamValue(Html.DisplayNameFor(model => model.DeviceList[0].Capacity))">容量</a>
+                </th>
+                <th class="sticky">
+                    <a asp-controller="Devices" action="Index"
+                       asp-route-SearchString="@Model.SearchString"
+                       asp-route-SortField="@Model.GetSortFieldParamValue(Html.DisplayNameFor(model => model.DeviceList[0].Graphics))">グラボ</a>
+                </th>
+                <th class="sticky">故障</th>
+                <th class="sticky">備考欄</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DeviceList!)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.AssetsNo">詳細</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetsNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Maker)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Os)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Memory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Graphics)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Break)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2">
+    <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
+    <a class="btn btn-primary" type="button" asp-action="Create">新規</a>
+</div>

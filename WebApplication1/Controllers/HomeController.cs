@@ -15,7 +15,6 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.text = "**ƒƒCƒ“ƒƒjƒ…[**";
             return View();
         }
 

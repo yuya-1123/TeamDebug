@@ -1,0 +1,64 @@
+﻿@*@model IEnumerable<TeamD_Database.Entity.User>*@
+@model WebApplication1.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "ユーザ一覧";
+}
+
+<h1 class="m-5">ユーザ一覧</h1>
+
+<form asp-controller="Users" asp-action="Index" method="get">
+    <div class="container-fluid text-center">
+        <div class="row gx-2 justify-content-end">
+            <div class="col-1">
+                <input type="submit" value="検索" class="btn btn-primary" />
+            </div>
+            <div class="col-1">
+                <input type="submit" value="リセット" class="btn btn-danger" id="reset" @ViewBag.reset/>
+            </div>
+            <div class="col-4">
+                <input type="text" name="SearchString" class="form-control" placeholder="氏名を入力..." />
+            </div>
+            </div>
+    </div>
+</form>
+<div class="table_set mt-3">
+<table class="table">
+    <thead>
+        <tr>
+            <th class="sticky"></th>
+            <th class="sticky">社員番号</th>
+            <th class="sticky">氏名</th>
+            <th class="sticky">所属部署</th>
+            <th class="sticky">役職</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.UserList!) {
+        //if (!item.DeleteFlag){           //--------------論理削除
+        <tr>
+            <td>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.EmployeeNo">詳細</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+        </tr>
+      //  }
+    }
+</tbody>
+</table>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2">
+    <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
+    <a class="btn btn-primary" type="button" asp-action="Create">新規</a>
+</div>

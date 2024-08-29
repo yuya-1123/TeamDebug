@@ -1,0 +1,97 @@
+﻿@using WebApplication1.Models.Data;
+@model UserData
+@{
+    ViewData["Title"] = "ユーザ登録";
+}
+<h2> ユーザ登録</h2>
+
+<div class="row"> 
+<div class="col-md-4">
+    <form asp-action="Add">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="EmployeeNo" class="control-label"></label>
+            <input asp-for="EmployeeNo" class="form-control" />
+            <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Namekana" class="control-label"></label>
+            <input asp-for="Namekana" class="form-control" />
+            <span asp-validation-for="Namekana" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="department" class="control-label"></label>
+            <input asp-for="department" class="form-control" />
+            <span asp-validation-for="department" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TelNo" class="control-label"></label>
+            <input asp-for="TelNo" class="form-control" />
+            <span asp-validation-for="TelNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MailAdress" class="control-label"></label>
+            <input asp-for="MailAdress" class="form-control" />
+            <span asp-validation-for="MailAdress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Age" class="control-label"></label>
+            <input asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender" class="control-label"></label>
+            <input asp-for="Gender" class="form-control" />
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Position" class="control-label"></label>
+            <input asp-for="Position" class="form-control" />
+            <span asp-validation-for="Position" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AccountLevel" class="control-label"></label>
+            <input asp-for="AccountLevel" class="form-control" />
+            <span asp-validation-for="AccountLevel" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RetireDate" class="control-label"></label>
+            <input asp-for="RetireDate" class="form-control" />
+            <span asp-validation-for="RetireDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RegisterDate" class="control-label"></label>
+            <input asp-for="RegisterDate" class="form-control" />
+            <span asp-validation-for="RegisterDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdateDate" class="control-label"></label>
+            <input asp-for="UpdateDate" class="form-control" />
+            <span asp-validation-for="UpdateDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DeleteFlag" class="control-label"></label>
+            <input asp-for="DeleteFlag" class="form-control" />
+            <span asp-validation-for="DeleteFlag" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-primary"asp-action="" />
+        </div>
+    </form>
+</div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

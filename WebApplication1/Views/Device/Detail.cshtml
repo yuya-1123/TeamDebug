@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "機器詳細";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>資産番号</th>
+            <th>メーカー</th>
+            <th>OS</th>
+            <th>メモリ</th>
+            <th>容量</th>
+            <th>グラフィックボード</th>
+            <th>保管場所</th>
+            <th>故障</th>
+            <th>備考</th>
+            <th>リース開始日</th>
+            <th>リース期限日</th>
+            <th>登録日</th>
+            <th>更新日</th>
+            <th>棚卸日</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @* テーブルのデータ行を情報の個数分繰り返し出力 *@
+        @foreach (var device in Model.DeviceList)
+        {
+            <tr>
+                <td>@device.AssetsNo</td>
+                <td>@device.Maker</td>
+                <td>@device.Os</td>
+                <td>@device.Memory</td>
+                <td>@device.Capacity</td>
+                <td>@device.Graphics</td>
+                <td>@device.Location</td>
+                <td>@device.Break</td>
+                <td>@device.Remarks</td>
+                <td>@device.StartleaseDate</td>
+                <td>@device.LimitleaseDate</td>
+                <td>@device.RegisterDate</td>
+                <td>@device.UpdateDate</td>
+                <td>@device.InventoryDate</td>
+                @*<td>@device.DeleteFlag</td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!--   値の受け渡しができないasp-route-id="device.AssetsNo --!>
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a class="btn btn-danger" asp-controller="Device" asp-action="Delete" > 削除 </a>
+</div>
+
+

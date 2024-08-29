@@ -7,19 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Kashidasi\Index.cshtml" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Kashidasi\Index.cshtml" />
+    <ProjectReference Include="..\TeamD_Database\TeamD_Database.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Kashidasi\Index.cshtml" />
+    <UpToDateCheckInput Remove="Views\User\Add.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Kashidasi\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\User\Add.cshtml" />
   </ItemGroup>
 
 </Project>

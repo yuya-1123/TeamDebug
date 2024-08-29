@@ -1,0 +1,101 @@
+﻿@using WebApplication1.Models.Data;
+@model DeviceData
+@{
+    ViewData["Title"] = "機器登録";
+}
+<h2> 機器登録</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AssetsNo" class="control-label"></label>
+                <input asp-for="AssetsNo" class="form-control" />
+                <span asp-validation-for="AssetsNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maker" class="control-label"></label>
+                <input asp-for="Maker" class="form-control" />
+                <span asp-validation-for="Maker" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Os" class="control-label"></label>
+                <input asp-for="Os" class="form-control" />
+                <span asp-validation-for="Os" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Memory" class="control-label"></label>
+                <input asp-for="Memory" class="form-control" />
+                <span asp-validation-for="Memory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Graphics" class="control-label"></label>
+                <input asp-for="Graphics" class="form-control" />
+                <span asp-validation-for="Graphics" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Break" class="control-label"></label>
+                <input asp-for="Break" class="form-control" />
+                <span asp-validation-for="Break" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartleaseDate" class="control-label"></label>
+                <input asp-for="StartleaseDate" class="form-control" />
+                <span asp-validation-for="StartleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LimitleaseDate" class="control-label"></label>
+                <input asp-for="LimitleaseDate" class="form-control" />
+                <span asp-validation-for="LimitleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remarks" class="control-label"></label>
+                <input asp-for="Remarks" class="form-control" />
+                <span asp-validation-for="Remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterDate" class="control-label"></label>
+                <input asp-for="RegisterDate" class="form-control" />
+                <span asp-validation-for="RegisterDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateDate" class="control-label"></label>
+                <input asp-for="UpdateDate" class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InventoryDate" class="control-label"></label>
+                <input asp-for="InventoryDate" class="form-control" />
+                <span asp-validation-for="InventoryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeleteFlag" class="control-label"></label>
+                <input asp-for="DeleteFlag" class="form-control" />
+                <span asp-validation-for="DeleteFlag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" asp-action="" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

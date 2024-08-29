@@ -1,0 +1,160 @@
+﻿@model TeamD_Database.Entity.User
+
+@{
+    ViewData["Title"] = "ユーザ詳細";
+}
+
+<h1 class="m-5">ユーザ詳細</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <div class="col">
+            <div class="list">
+                <dt class="col-sm-4">
+                    社員番号
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.EmployeeNo)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    氏名
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    氏名（カタカナ）
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.Namekana)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    年齢
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Age)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    性別
+                </dt>
+                <dd class="col-sm-8">
+                    @if (Model.Gender == 0)
+                    {
+                        <span>男</span>
+                    }
+                    else if (Model.Gender == 1)
+                    {
+                        <span>女</span>
+                    }
+                    else
+                    {
+                        <input type="text" value="その他" disabled>
+                    }
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    所属部署
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.department)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    役職
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Position)
+                </dd>
+            </div>
+        </div>
+        <div class="col">
+            <div class="list">
+                <dt class = "col-sm-4">
+                    電話番号
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.TelNo)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    メールアドレス
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.MailAdress)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    PCアカウント権限
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.AccountLevel)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    登録日
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.RegisterDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class = "col-sm-4">
+                    更新日
+                </dt>
+                <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.UpdateDate)
+                </dd>
+            </div>
+            <div class="list">
+                <dt class="col-sm-4">
+                    退職日
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.RetireDate)
+                </dd>
+            </div>
+        </div>
+        
+    </dl>
+    <hr />
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
+    <a class="btn btn-primary me-md-2" type="button" asp-action="Edit" asp-route-id="@Model?.EmployeeNo">編集</a>
+    <button type="button" class="btn btn-danger me-md-2" data-bs-toggle="modal" data-bs-target="#deleteModal" asp-route-id="@Model?.EmployeeNo">削除</button>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">削除確認</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    本当に削除しますか？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> いいえ </button>
+                    <form method="post" asp-action="Delete" asp-route-id="@Model.EmployeeNo">
+                        <input type="submit" value="はい" class="btn btn-danger" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
