@@ -264,6 +264,13 @@ namespace WebApplication1.Controllers
             return View(rental);
         }
 
+        /*public IActionResult RentalsHistory()
+        {
+            var rental = _context.Rental.Find(id);
+
+            return View(rental);
+        }*/
+
         private bool RentalExists(string id)
         {
             return _context.Rental.Any(e => e.AssetsNo == id);

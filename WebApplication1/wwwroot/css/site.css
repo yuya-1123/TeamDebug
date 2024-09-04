@@ -72,3 +72,9 @@ dt,dd{
     width:45%;
     margin:2%;
 }
+
+.block-r {
+    display: inline-block;
+    width: 45%;
+    margin-left: 10%;
+}
