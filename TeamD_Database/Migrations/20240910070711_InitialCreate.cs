@@ -57,6 +57,22 @@ namespace TeamD_Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RentalsHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Assets_No = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Employee_No = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LoanDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RentalsHistory", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -65,7 +81,7 @@ namespace TeamD_Database.Migrations
                     Namekana = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     department = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     TelNo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    MailAdress = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    MailAdress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
@@ -89,6 +105,9 @@ namespace TeamD_Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rental");
+
+            migrationBuilder.DropTable(
+                name: "RentalsHistory");
 
             migrationBuilder.DropTable(
                 name: "User");

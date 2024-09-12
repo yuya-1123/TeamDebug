@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TeamD_Database;
+using TeamD_Database.Entity;
 using WebApplication1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     UserSeedData.Initialize(services);
+    
 }
 
 // Configure the HTTP request pipeline.

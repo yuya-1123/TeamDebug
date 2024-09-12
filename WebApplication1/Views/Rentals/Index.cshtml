@@ -14,16 +14,20 @@
 </div>
 <div id="collapseOne" class="collapse" aria-expanded="true">
     <form asp-controller="Rentals" asp-action="Index" method="get">
-        <div class="container text-center pt-2">
+        <div class="container-fluid pt-2">
             <div class="row gx-2 justify-content-end">
-                <div class="col-1 m-1">
-                    <input type="submit" value="検索" class="btn btn-primary" />
-                </div>
-                <div class="col-1 m-1">
-                    <input type="submit" value="リセット" class="btn btn-danger" id="reset" @ViewBag.reset />
-                </div>
-                <div class="col-4 m-1">
-                    <input type="text" name="SearchString" class="form-control" />
+                <div class="col-6">
+                    <div class="form-container">
+                        <div>
+                            <input type="submit" value="検索" class="btn btn-primary" />
+                        </div>
+                        <div>
+                            <input type="submit" value="リセット" class="btn btn-danger" id="reset" @ViewBag.reset />
+                        </div>
+                        <div class="flex-grow-1">
+                            <input type="text" name="SearchString" class="form-control" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,7 +79,7 @@
                     <td>
                         @Html.DisplayFor(Model => item.LoanDate)
                     </td>
-                    @if (item.ReturnDate > DateTime.Now)
+                    @if (item.ReturnDate < DateTime.Now)
                     {
                         <td>
                             <a style="color:red">@Html.DisplayFor(Model => item.ReturnDate)</a>
@@ -101,5 +105,5 @@
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2">
     <button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</button>
-    <button class="btn btn-primary me-md-2" type="button"　asp-action="RentalsHistory">貸出履歴</button>
+    <a class="btn btn-primary me-md-2" asp-action="RentalsHistory">貸出履歴</a>
 </div>

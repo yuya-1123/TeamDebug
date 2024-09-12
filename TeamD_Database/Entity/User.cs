@@ -6,8 +6,10 @@ namespace TeamD_Database.Entity
     public class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public required string EmployeeNo {  get; set; } 
+        [Required(ErrorMessage = "*入力必須項目です")]
+        public required string EmployeeNo {  get; set; }
 
+        [Required(ErrorMessage = "*入力必須項目です")]
         [MaxLength(20)]
         public required string Name { get; set; } = string.Empty;
 
@@ -20,12 +22,16 @@ namespace TeamD_Database.Entity
         [MaxLength(20)]
         public  string? TelNo { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(50)]
+        [EmailAddress(ErrorMessage = "*メールアドレスの形式で入力してください")]
         public  string? MailAdress { get; set; }
 
-        public  int Age { get; set; }
+        [Range(0,100, ErrorMessage = "*年齢は0～100歳まで入力可能です")]
+        [Required(ErrorMessage = "*入力必須項目です")]
+        public  required int Age { get; set; }
 
-        public  int Gender { get; set; }
+        [Required(ErrorMessage = "*入力必須項目です")]
+        public required int Gender { get; set; }
 
         [MaxLength(20)]
         public  string? Position { get; set; }

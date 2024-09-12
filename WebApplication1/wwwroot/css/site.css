@@ -78,3 +78,10 @@ dt,dd{
     width: 45%;
     margin-left: 10%;
 }
+
+.form-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width
+}

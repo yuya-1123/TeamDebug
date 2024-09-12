@@ -19,9 +19,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="EmployeeNo" class="control-label">社員番号</label>
-                <input asp-for="EmployeeNo" class="form-control" id="EmployeeNo" required />
+                <input asp-for="EmployeeNo" class="form-control" id="EmployeeNo" readonly />
                 <span asp-validation-for="EmployeeNo" class="text-danger"></span>
             </div>
+
+            <div class="form-group d-none">
+                <label asp-for="Maker" class="control-label"></label>
+                <input asp-for="Maker" class="form-control" readonly />
+                <span asp-validation-for="Maker" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="OS" class="control-label"></label>
+                <input asp-for="OS" class="form-control" readonly />
+                <span asp-validation-for="OS" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" readonly />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -45,7 +62,28 @@
         </div>
             <div class="form-group d-grid gap-2 d-md-flex justify-content-md-center mt-2">
                 <a button class="btn btn-primary me-md-2" type="button" onclick="history.back()">戻る</a>
-                <input type="submit" value="返却" class="btn btn-danger" />
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#returnModal" asp-route-id="@Model?.AssetsNo">返却</button>
+
+            <div class="modal fade" id="returnModal" tabindex="-1" aria-labelledby="returnModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="returnModalLabel">返却確認</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            既定の位置：@Model.Location　です。
+                            別の場所へ戻した場合は機器情報の更新も必要です。
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" asp-action="Delete" asp-route-id="@Model.AssetsNo">
+                                <input type="submit" value="完了" class="btn btn-danger" />
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
     </form>
 </div>

@@ -6,6 +6,7 @@ namespace TeamD_Database.Entity
     public class Device
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required(ErrorMessage = "*入力必須項目です")]
         public required string AssetsNo { get; set; }
 
         [MaxLength(20)]

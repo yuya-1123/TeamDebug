@@ -8,18 +8,22 @@
 <h1 class="m-5">ユーザ一覧</h1>
 
 <form asp-controller="Users" asp-action="Index" method="get">
-    <div class="container-fluid text-center">
+    <div class="container-fluid">
         <div class="row gx-2 justify-content-end">
-            <div class="col-1">
-                <input type="submit" value="検索" class="btn btn-primary" />
+            <div class="col-6">
+                <div class="form-container">
+                    <div>
+                        <input type="submit" value="検索" class="btn btn-primary" />
+                    </div>
+                    <div>
+                        <input type="submit" value="リセット" class="btn btn-danger" id="reset" @ViewBag.reset />
+                    </div>
+                    <div class="flex-grow-1">
+                        <input type="text" name="SearchString" class="form-control" placeholder="氏名を入力..." />
+                    </div>
+                </div>
             </div>
-            <div class="col-1">
-                <input type="submit" value="リセット" class="btn btn-danger" id="reset" @ViewBag.reset/>
-            </div>
-            <div class="col-4">
-                <input type="text" name="SearchString" class="form-control" placeholder="氏名を入力..." />
-            </div>
-            </div>
+        </div>
     </div>
 </form>
 <div class="table_set mt-3">

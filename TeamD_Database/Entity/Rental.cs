@@ -8,16 +8,17 @@ namespace TeamD_Database.Entity
         public string AssetsNo { get; set; } = string.Empty;
 
         [MaxLength(20)]
-        public string? Maker {  get; set; }
+        public string? Maker {  get; set; } = string.Empty;
 
         [MaxLength(20)]
-        public string? OS {  get; set; }
+        public string? OS {  get; set; } = string.Empty;
 
         [MaxLength(20)]
         public string? Location { get; set; }
 
         public required Boolean Vacant {  get; set; }
 
+        
         [MaxLength(20)]
         public string? EmployeeNo { get; set; }
 

@@ -14,43 +14,33 @@
             <input type="hidden" asp-for="AssetsNo" />
             <div class="form-group">
                 <label asp-for="AssetsNo" class="control-label">資産番号</label>
-                <input asp-for="AssetsNo" class="form-control" id="AssetsNo" readonly />
+                <input asp-for="AssetsNo" class="form-control"  readonly />
                 <span asp-validation-for="AssetsNo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Maker" class="control-label"></label>
-                <input asp-for="Maker" class="form-control" />
+                <input asp-for="Maker" class="form-control" readonly />
                 <span asp-validation-for="Maker" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OS" class="control-label"></label>
-                <input asp-for="OS" class="form-control" />
+                <input asp-for="OS" class="form-control" readonly />
                 <span asp-validation-for="OS" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Vacant" /> @Html.DisplayNameFor(model => model.Vacant)
-                </label>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" readonly />
+                <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EmployeeNo" class="control-label">社員番号</label>
-                <input asp-for="EmployeeNo" class="form-control" id="EmployeeNo" required />
                 <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+                <input asp-for="EmployeeNo" class="form-control" id="EmployeeNo" data-val-required="社員番号は必須項目です" required />
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LoanDate" class="control-label"></label>
-                <input asp-for="LoanDate" class="form-control" />
-                <span asp-validation-for="LoanDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReturnDate" class="control-label"></label>
-                <input asp-for="ReturnDate" class="form-control" />
-                <span asp-validation-for="ReturnDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Remarks" class="control-label"></label>

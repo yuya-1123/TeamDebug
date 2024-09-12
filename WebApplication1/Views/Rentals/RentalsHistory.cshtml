@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "貸出履歴";
+}
+
+@model WebApplication1.Models.HistoryViewModel
+
+<h1 class="m-5">貸出履歴</h1>
+     
+        <div class="table_set mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="sticky">ID</th>
+                        <th class="sticky">資産番号</th>
+                        <th class="sticky">社員番号</th>
+                        <th class="sticky">貸出日</th>
+                        <th class="sticky">返却日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var history in Model.HistoryList!)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(Model => history.Id)</td>
+                            <td>@Html.DisplayFor(Model => history.Assets_No)</td>
+                            <td>@Html.DisplayFor(Model => history.Employee_No)</td>
+                            <td>@Html.DisplayFor(Model => history.LoanDate)</td>
+                            <td>@Html.DisplayFor(Model => history.ReturnDate)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>

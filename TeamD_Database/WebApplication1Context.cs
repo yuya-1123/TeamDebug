@@ -12,6 +12,8 @@ namespace TeamD_Database
         public DbSet<Device> Device { get; set; }
         public DbSet<Rental> Rental { get; set; }
 
+        public DbSet<RentalsHistory> RentalsHistory { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             /* エンティティの追加設定など */
@@ -25,6 +27,9 @@ namespace TeamD_Database
 
             modelBuilder.Entity<Rental>()
                 .HasKey(r => r.AssetsNo);
+
+            modelBuilder.Entity<RentalsHistory>()
+                .HasKey(rh => rh.Id);
         }
     }
 }

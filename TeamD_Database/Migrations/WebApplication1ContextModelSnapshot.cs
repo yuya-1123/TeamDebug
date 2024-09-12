@@ -123,6 +123,33 @@ namespace TeamD_Database.Migrations
                     b.ToTable("Rental");
                 });
 
+            modelBuilder.Entity("TeamD_Database.Entity.RentalsHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Assets_No")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Employee_No")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LoanDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RentalsHistory");
+                });
+
             modelBuilder.Entity("TeamD_Database.Entity.User", b =>
                 {
                     b.Property<string>("EmployeeNo")
@@ -142,8 +169,8 @@ namespace TeamD_Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MailAdress")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()

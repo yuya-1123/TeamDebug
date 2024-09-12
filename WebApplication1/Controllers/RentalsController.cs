@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers
 
             foreach(var i in rental)
             {
-                if (i.ReturnDate > DateTime.Now)
+                if (i.ReturnDate < DateTime.Now)
                     cnt++;
             }
             ViewBag.Limit = cnt;
@@ -96,7 +96,7 @@ namespace WebApplication1.Controllers
             
             foreach(var i in rentals)
             {
-                if (i.ReturnDate > DateTime.Now)
+                if (i.ReturnDate < DateTime.Now)
                     cnt++;
             }
             ViewBag.Limit = cnt;
@@ -139,7 +139,7 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AssetsNo,Maker,OS,Vacant,EmployeeNo,Name,LoanDate,ReturnDate,Remarks")] TeamD_Database.Entity.Rental rental)
+        public async Task<IActionResult> Create([Bind("Id,AssetsNo,Maker,OS,Location,Vacant,EmployeeNo,Name,LoanDate,ReturnDate,Remarks")] TeamD_Database.Entity.Rental rental)
         {
             if (ModelState.IsValid)
             {
@@ -168,7 +168,7 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,AssetsNo,Maker,OS,Vacant,EmployeeNo,Name,LoanDate,ReturnDate,Remarks")] TeamD_Database.Entity.Rental rental)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,AssetsNo,Maker,OS,Location,Vacant,EmployeeNo,Name,LoanDate,ReturnDate,Remarks")] Rental rental)
         {
             if (id != rental.AssetsNo)
             {
@@ -228,7 +228,7 @@ namespace WebApplication1.Controllers
         // POST: Rentals/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(string id, [Bind("Id,AssetsNo,Maker,OS,Vacant,EmployeeNo,Name,LoanDate,ReturnDate,Remarks")] TeamD_Database.Entity.Rental rental)
+        public async Task<IActionResult> Delete(string id, [Bind("Id,AssetsNo,Maker,OS,Location,Vacant,EmployeeNo,Name,LoanDate,ReturnDate,Remarks")] Rental rental)
         {
             if (id != rental.AssetsNo)
             {
@@ -239,12 +239,27 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
+                    
+                    //履歴追加----データリセットより前にやらないとだめ
+                    RentalsHistory history = new RentalsHistory()
+                    {
+                        Assets_No = rental.AssetsNo,
+                        Employee_No = rental.EmployeeNo == null ? "" : rental.EmployeeNo,
+                        LoanDate = rental.LoanDate,
+                        ReturnDate = DateTime.Now,
+                    };
+
+                    //データリセット
                     rental.LoanDate = null;
                     rental.ReturnDate = null;
                     rental.Vacant = false;
                     rental.EmployeeNo = null;
                     rental.Name = null;
-                  
+                    
+
+                 
+                    _context.Add(history);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -264,12 +279,17 @@ namespace WebApplication1.Controllers
             return View(rental);
         }
 
-        /*public IActionResult RentalsHistory()
+        public async Task<IActionResult> RentalsHistory()
         {
-            var rental = _context.Rental.Find(id);
+            var history = _context.RentalsHistory;
 
-            return View(rental);
-        }*/
+            var historyVM = new HistoryViewModel
+            {
+                HistoryList = await history.ToListAsync()
+            };
+
+            return View(historyVM);
+        }
 
         private bool RentalExists(string id)
         {

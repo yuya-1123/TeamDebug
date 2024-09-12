@@ -38,7 +38,8 @@ namespace WebApplication1.Controllers
             var param_word = new SqlParameter("@param_word", string.Empty);
 
             var devices = from m in _context.Device
-                        select m;
+                          where m.DeleteFlag != true
+                          select m;
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -47,11 +48,18 @@ namespace WebApplication1.Controllers
                 param_word.Value = "%" + searchString + "%";
                 strWhere = "( AssetsNo LIKE @param_word ) OR ( Maker LIKE @param_word ) OR ( Os LIKE @param_word ) OR ( Memory LIKE @param_word ) OR ( Capacity LIKE @param_word )";
             }
+            else 
+            {
+                ViewBag.reset = "disabled";
+            }
+
             if (!string.IsNullOrEmpty(strWhere))
             {
                 strSQL = strSQL += Environment.NewLine + "WHERE " + strWhere;
             }
+
             selected = _context.Device.FromSqlRaw(strSQL, param_word);
+            selected = selected.Where(m => m.DeleteFlag != true);
 
             bool desc = false;
             string sortfieldBody = string.Empty;
@@ -250,8 +258,10 @@ namespace WebApplication1.Controllers
             }
             
             var deviceInrental = _context.Rental.Find(id);
-            if (deviceInrental == null) 
+            if (deviceInrental == null)
+            {
                 return NotFound();
+            }
 
             var deviceRegiDate = await _context.Device.AsNoTracking().FirstOrDefaultAsync(u => id == device.AssetsNo);
             if (ModelState.IsValid)

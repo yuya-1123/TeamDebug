@@ -13,8 +13,8 @@
         <div class="block">
             <div class="form-group">
                 <label asp-for="AssetsNo" class="control-label">資産番号</label>
-                <input asp-for="AssetsNo" class="form-control" />
                 <span asp-validation-for="AssetsNo" class="text-danger"></span>
+                <input asp-for="AssetsNo" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Maker" class="control-label">メーカー</label>
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Graphics" /> @Html.DisplayNameFor(model => model.Graphics)
+                    <input class="form-check-input" asp-for="Graphics" /> グラフィックボード
                 </label>
             </div>
             <div class="form-group">
@@ -50,7 +50,7 @@
         <div class="block">
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Break" /> @Html.DisplayNameFor(model => model.Break)
+                    <input class="form-check-input" asp-for="Break" />故障
                 </label>
             </div>
             <div class="form-group">

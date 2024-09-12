@@ -18,7 +18,7 @@ namespace WebApplication1.Models.Data
         [MaxLength(20)]
         public string? TelNo { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string? MailAdress { get; set; }
 
         public int Age { get; set; }
